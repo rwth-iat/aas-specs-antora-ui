@@ -114,7 +114,7 @@
 
   .exampleblock > .content {
     background: #e5f0f7;
-    box-shadow: 0 1px 4px #e0e0dc;
+    /* box-shadow: 0 1px 4px #e0e0dc; */
   }
 
   #header,
