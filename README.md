@@ -1,7 +1,7 @@
 # aas-specs-antora-ui
 
 ## Description
-This is repository contains the source files of the User Interface bundle that is meant to be used by [Antora](https://antora.org/) to generate a documentation site for the project [aas-specs](https://github.com/rwth-iat/aas-specs) in the repository [aas-specs-antora](https://github.com/rwth-iat/aas-specs-antora). This UI Bundle is based off of [Antora Default UI](https://gitlab.com/antora/antora-ui-default).
+This is repository contains the source files of the User Interface bundle that is meant to be used by [Antora](https://antora.org/) to generate a documentation site for all specifications of the Asset Administration Shell, i.e. for all repositories in admin-shell-io starting with "aas-specs" (except for this one) in the repository [aas-specs-antora](https://github.com/rwth-iat/aas-specs-antora). This UI Bundle is based off of [Antora Default UI](https://gitlab.com/antora/antora-ui-default).
 
 Please note that this repository is currently in active development.
 
