@@ -1,11 +1,11 @@
 {
-  "name": "@antora/ui-default",
+  "name": "aas-specs-antora-ui",
   "description": "An archetype project that produces a UI for creating documentation sites with Antora",
-  "homepage": "https://gitlab.com/antora/antora-ui-default",
+  "homepage": "https://github.com/admin-shell-io/aas-specs-antora-ui",
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/antora/antora-ui-default.git"
+    "url": "https://github.com/admin-shell-io/aas-specs-antora-ui.git"
   },
   "scripts": {
     "start": "gulp preview"
