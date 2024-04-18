@@ -77,7 +77,7 @@ function addVersionEntry (file, tagName, contents = Buffer.alloc(0)) {
 module.exports = (dest, bundleName, owner, repo, ref, token, updateBranch, latestAlias) => async () => {
   const octokit = new Octokit({ auth: `token ${token}` })
   let variant = ref ? ref.replace(/^refs\/heads\//, '') : 'main'
-  if (variant === 'main') variant = 'prod'
+  if (variant === 'main') variant = 'v'
   ref = ref.replace(/^refs\//, '')
   const tagPrefix = `${variant}-`
   const latestTagName = latestAlias === false ? undefined : `${tagPrefix}${latestAlias || 'latest'}`
