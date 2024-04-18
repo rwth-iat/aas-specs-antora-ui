@@ -84,7 +84,8 @@ module.exports = (dest, bundleName, owner, repo, ref, token, updateBranch, lates
   ref = ref.replace(/^refs\//, '')
   const tagPrefix = `${variant}-`
   const latestTagName = latestAlias === false ? undefined : `${tagPrefix}${latestAlias || 'latest'}`
-  log.info('Start to ger the tagname', octokit, owner, repo, tagPrefix, latestTagName);
+  log.info('Start to ger the tagname', octokit, owner, repo, tagPrefix, latestTagName, ref);
+  log.info(name);
   const tagName = `${tagPrefix}${await getNextReleaseNumber({ octokit, owner, repo, tagPrefix, latestTagName })}`
   const message = `Release ${tagName}`
   const bundleFileBasename = `${bundleName}-bundle.zip`
