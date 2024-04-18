@@ -1,25 +1,32 @@
 <header class="header" role="banner">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="{{{or site.url siteRootPath}}}"><img src="{{uiRootPath}}/img/idta-logo.png" alt="{{site.title}}" height="45"</a>
-      <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}">The Asset Administration Shell Documentation</a>
-      {{#if env.SITE_SEARCH_PROVIDER}}
-      <div class="navbar-item search hide-for-print">
-        <div id="search-field" class="field">
-          <input id="search-input" type="text" placeholder="Search the docs"{{#if page.home}} autofocus{{/if}}>
-        </div>
-      </div>
-      {{/if}}
-      <button class="navbar-burger" data-target="topbar-nav">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>  
+      <a class="navbar-item" href="https://industrialdigitaltwin.org/"><img src="{{uiRootPath}}/img/idta-logo.png" alt="{{site.title}}" height="45"</a>
+      <a class="navbar-item title" href="{{or site.url (or siteRootUrl siteRootPath)}}">{{site.title}}</a>
       <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        {{#if env.SITE_SEARCH_PROVIDER}}
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs"{{#if page.home}} autofocus{{/if}}>
+          </div>
+        </div>
+        {{/if}}
+        <a class="navbar-item" href="https://industrialdigitaltwin.org/en/contact">Contact</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Follow us</div>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://www.linkedin.com/company/industrial-digital-twin-association/">LinkedIn</a>
+            <a class="navbar-item" href="https://www.youtube.com/channel/UCvYk-bRkF9-x0HdpJfEcV7g">YouTube</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://github.com/admin-shell-io">Source</a>
+      </div>
   </nav>
 </header>
