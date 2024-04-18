@@ -4,18 +4,18 @@ const autoprefixer = require('autoprefixer')
 const browserify = require('browserify')
 const concat = require('gulp-concat')
 const cssnano = require('cssnano')
-const fs = require('fs')
+const fs = require('node:fs')
 const { promises: fsp } = fs
 const imagemin = require('gulp-imagemin')
 const merge = require('merge-stream')
-const ospath = require('path')
+const ospath = require('node:path')
 const path = ospath.posix
 const postcss = require('gulp-postcss')
 const postcssCalc = require('postcss-calc')
 const postcssImport = require('postcss-import')
 const postcssUrl = require('postcss-url')
-const postcssVar = require('postcss-custom-properties')
-const { Transform } = require('stream')
+const postcssVars = require('postcss-custom-properties')
+const { Transform } = require('node:stream')
 const map = (transform) => new Transform({ objectMode: true, transform })
 const through = () => map((file, enc, next) => next(null, file))
 const uglify = require('gulp-uglify')
@@ -43,22 +43,22 @@ module.exports = (src, dest, preview) => () => {
           const abspath = require.resolve(relpath)
           const basename = ospath.basename(abspath)
           const destpath = ospath.join(dest, 'font', basename)
-          if (!fs.existsSync(destpath)) {
-            fs.mkdirSync(ospath.join(dest, 'font'), { recursive: true })
-            fs.copyFileSync(abspath, destpath)
-          }
+          if (!fs.existsSync(destpath)) fs.cpSync(abspath, destpath, { recursive: true })
           return path.join('..', 'font', basename)
         },
       },
     ]),
-    postcssVar({ preserve: preview }),
-    // NOTE to make vars.css available to all top-level stylesheets, use the next line in place of the previous one
-    //postcssVar({ importFrom: path.join(src, 'css', 'vars.css'), preserve: preview }),
-    preview ? postcssCalc : () => {}, // cssnano already applies postcssCalc
+    // NOTE importFrom makes vars available to all top-level stylesheets without having to redeclare the variables
+    // use preserve: false to resolve var() declarations (this option is broken for postcss-custom-properties >= 12.0)
+    postcssVars({ disableDeprecationNotice: true, importFrom: path.join(src, 'css', 'vars.css'), preserve: true }),
+    preview ? postcssCalc : () => {},
     autoprefixer,
     preview
       ? () => {}
-      : (css, result) => cssnano({ preset: 'default' })(css, result).then(() => postcssPseudoElementFixer(css, result)),
+      : (css, result) =>
+        cssnano()
+          .process(css, result.opts)
+          .then(() => postcssPseudoElementFixer(css, result)),
   ]
 
   return merge(
@@ -70,7 +70,7 @@ module.exports = (src, dest, preview) => () => {
       // NOTE concat already uses stat from newest combined file
       .pipe(concat('js/site.js')),
     vfs
-      .src('js/vendor/*([^.])?(.bundle).js', { ...opts, read: false })
+      .src('js/vendor/+([^.])?(.bundle).js', { ...opts, read: false })
       .pipe(bundle(opts))
       .pipe(uglify({ output: { comments: /^! / } })),
     vfs
@@ -88,7 +88,7 @@ module.exports = (src, dest, preview) => () => {
         : imagemin(
           [
             imagemin.gifsicle(),
-            imagemin.jpegtran(),
+            imagemin.mozjpeg(),
             imagemin.optipng(),
             imagemin.svgo({
               plugins: [
@@ -115,7 +115,7 @@ function bundle ({ base: basedir, ext: bundleExt = '.bundle.js' }) {
       browserify(file.relative, { basedir, detectGlobals: false })
         .plugin('browser-pack-flat/plugin')
         .on('file', (bundledPath) => {
-            if (bundledPath !== bundlePath) mtimePromises.push(fsp.stat(bundledPath).then(({ mtime }) => mtime))
+          if (bundledPath !== bundlePath) mtimePromises.push(fsp.stat(bundledPath).then(({ mtime }) => mtime))
         })
         .bundle((bundleError, bundleBuffer) =>
           Promise.all(mtimePromises).then((mtimes) => {
