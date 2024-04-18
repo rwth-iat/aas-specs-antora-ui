@@ -13,7 +13,9 @@ const vfs = require('vinyl-fs')
 const zip = require('@vscode/gulp-vinyl-zip')
 
 function getNextReleaseNumber ({ octokit, owner, repo, tagPrefix, latestTagName }) {
+  log.info('Start to ger the tagname2', name);
   const filter = ({ name }) => name !== latestTagName && name.startsWith(tagPrefix)
+  log.info('Start to ger the tagname2', filter);
   return collectReleases({ octokit, owner, repo, filter }).then((releases) => {
     if (releases.length) {
       releases.sort((a, b) => -1 * a.name.localeCompare(b.name, 'en', { numeric: true }))
