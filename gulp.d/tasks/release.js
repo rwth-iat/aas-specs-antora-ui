@@ -13,7 +13,6 @@ const vfs = require('vinyl-fs')
 const zip = require('@vscode/gulp-vinyl-zip')
 
 function getNextReleaseNumber ({ octokit, owner, repo, tagPrefix, latestTagName }) {
-  log.info('Start to ger the tagname2', name);
   const filter = ({ name }) => name !== latestTagName && name.startsWith(tagPrefix)
   log.info('Start to ger the tagname2', filter);
   return collectReleases({ octokit, owner, repo, filter }).then((releases) => {
@@ -85,7 +84,6 @@ module.exports = (dest, bundleName, owner, repo, ref, token, updateBranch, lates
   const tagPrefix = `${variant}-`
   const latestTagName = latestAlias === false ? undefined : `${tagPrefix}${latestAlias || 'latest'}`
   log.info('Start to ger the tagname', octokit, owner, repo, tagPrefix, latestTagName, ref);
-  log.info(name);
   const tagName = `${tagPrefix}${await getNextReleaseNumber({ octokit, owner, repo, tagPrefix, latestTagName })}`
   const message = `Release ${tagName}`
   const bundleFileBasename = `${bundleName}-bundle.zip`
