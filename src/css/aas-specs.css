@@ -86,6 +86,9 @@
   .table-with-appendix-table {
     margin-bottom: 0;
   }
+  .appendix-table {
+    margin-top: 0;
+  }
 
   /* Header column */
   tbody tr th {
