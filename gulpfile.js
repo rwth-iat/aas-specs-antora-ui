@@ -128,7 +128,6 @@ const previewTask = createTask({
 module.exports = exportTasks(
   bundleTask,
   cleanTask,
-  lintTask,
   formatTask,
   buildTask,
   bundleTask,
