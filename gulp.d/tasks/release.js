@@ -82,7 +82,7 @@ module.exports = (dest, bundleName, owner, repo, ref, token, updateBranch, lates
   ref = ref.replace(/^refs\//, '')
   const tagPrefix = `${variant}-`
   const latestTagName = latestAlias === false ? undefined : `${tagPrefix}${latestAlias || 'latest'}`
-  log.info('Using gulpfile', ansi.magenta(tildify(env.configPath)));
+  log.info('Start to ger the tagname', octokit, owner, repo, tagPrefix, latestTagName);
   const tagName = `${tagPrefix}${await getNextReleaseNumber({ octokit, owner, repo, tagPrefix, latestTagName })}`
   const message = `Release ${tagName}`
   const bundleFileBasename = `${bundleName}-bundle.zip`
