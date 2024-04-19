@@ -28,6 +28,7 @@ function getNextReleaseNumber ({ octokit, owner, repo, tagPrefix, latestTagName 
 
 function collectReleases ({ octokit, owner, repo, filter, page = 1, accum = [] }) {
   return octokit.repos.listReleases({ owner, repo, page, per_page: 100 }).then((result) => {
+    log.info('Releases collected')
     const releases = result.data.filter(filter)
     const links = result.headers.link
     if (links && links.includes('; rel="next"')) {
