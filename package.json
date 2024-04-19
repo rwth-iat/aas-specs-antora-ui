@@ -5,7 +5,7 @@
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/admin-shell-io/aas-specs-antora-ui.git"
+    "url": "https://github.com/admin-shell-io/aas-specs-antora-ui"
   },
   "scripts": {
     "start": "gulp preview"
