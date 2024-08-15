@@ -6,8 +6,8 @@ function truncateUrl(url) {
     const protocol = url.substring(0, protocolEndIndex + 3);
     const restOfUrl = url.substring(protocolEndIndex + 3);
     const segments = restOfUrl.split('/').filter(segment => segment.length > 0);
-        if (segments.length >= 3) {
-        return protocol + segments.slice(0, 3).join('/');
+        if (segments.length >= 4) {
+        return protocol + segments.slice(0, 4).join('/');
     } else {
         return url;
     }
