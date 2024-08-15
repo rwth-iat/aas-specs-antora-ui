@@ -3,16 +3,15 @@ function truncateUrl(url) {
     if (protocolEndIndex === -1) {
         return url;
     }
-    const protocol = url.substring(0, protocolEndIndex + 3); // Includes '://'
-    const restOfUrl = url.substring(protocolEndIndex + 3); // The part after '://'
+    const protocol = url.substring(0, protocolEndIndex + 3);
+    const restOfUrl = url.substring(protocolEndIndex + 3);
     const segments = restOfUrl.split('/').filter(segment => segment.length > 0);
-    if (segments.length > 2) {
+        if (segments.length >= 3) {
         return protocol + segments.slice(0, 3).join('/');
     } else {
         return url;
     }
 }
-
 const downloadButton = document.getElementById('downloadButton')
 const url = window.location.href
 const newUrl = truncateUrl(url)
