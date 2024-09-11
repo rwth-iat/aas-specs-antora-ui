@@ -1,0 +1,122 @@
+/*
+From the Merge Request
+https://gitlab.com/antora/antora-ui-default/-/merge_requests/126/
+By Alexander Schwartz
+https://gitlab.com/ahus1
+*/
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  padding-top: 5vh;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  backdrop-filter: blur(3px);
+  background-color: rgba(30, 30, 30, 0.8);
+}
+
+img.lightbox {
+  cursor: pointer;
+}
+/* Modal Content */
+.modal .modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-height: 90vh;
+  cursor: pointer;
+}
+
+.modal .modal-content img {
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  min-width: 90vw;
+  min-height: 90vh;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  object-fit: contain;
+}
+/* The Close Button */
+.modal .close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+ src/css/site.css 
++
+1
+−
+0
+@@ -14,4 +14,5 @@
+@import "header.css";
+@import "footer.css";
+@import "highlight.css";
+@import "lightbox.css";
+@import "print.css";
+ src/js/06-lightbox.js  0 → 100644
++
+43
+−
+0
+;(function () {
+  'use strict'
+  var lightbox
+
+  function init () {
+    if (!lightbox) {
+      lightbox = document.createElement('div')
+      lightbox.className = 'modal'
+      lightbox.innerHTML = '<span class="close cursor">&times;</span>\n' +
+        '  <div class="modal-content">\n' +
+        '    <img alt="filled at runtime">\n' +
+        '  </div>'
+
+      var footer = document.getElementsByTagName('footer')[0]
+      footer.parentNode.insertBefore(lightbox, footer.nextSibling)
+
+      lightbox.getElementsByTagName('div')[0].onclick = closeModal
+      lightbox.getElementsByTagName('span')[0].onclick = closeModal
+    }
+  }
+
+  function openModal () {
+    lightbox.style.display = 'block'
+  }
+
+  function closeModal () {
+    lightbox.style.display = 'none'
+  }
+
+  document.querySelectorAll('.imageblock img').forEach(function (element) {
+    if (element.parentNode.nodeName === 'A') {
+      // if parent node is an anchor, keep the anchor instead of opening lightbox
+      return
+    }
+    element.className += ' lightbox'
+    element.addEventListener('click', function (evt) {
+      init()
+      lightbox.getElementsByTagName('img')[0].setAttribute('src', evt.currentTarget.getAttribute('src'))
+      lightbox.getElementsByTagName('img')[0].setAttribute('alt', evt.currentTarget.getAttribute('alt'))
+      openModal()
+    })
+  })
+})()
