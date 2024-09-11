@@ -59,8 +59,9 @@ when lightbox is opened for inlined SVG:
       var closeLink = document.createElement('a')
       // set href to make it selectable with tab / assistive technologies
       closeLink.href = '#'
-      closeLink.className = 'close'
-      closeLink.setAttribute('title', 'Close lightbox')
+      //closeLink.className = 'close'
+      closeLink.textContent = 'Close';
+      // closeLink.setAttribute('title', 'Close lightbox')
       //if (config.svgAs === 'svg') {
       //  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
       //  svg.setAttribute('class', 'copy-icon')
