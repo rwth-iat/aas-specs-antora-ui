@@ -74,7 +74,7 @@ when lightbox is opened for inlined SVG:
       //  img.alt = 'close icon'
       //  img.className = 'x-icon'
       //  closeLink.appendChild(img)
-      }
+      // }
       lightbox.appendChild(closeLink)
       content = document.createElement('div')
       content.className = 'content'
