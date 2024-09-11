@@ -142,10 +142,10 @@ when lightbox is opened for inlined SVG:
       })
     }
     element.addEventListener('click', function (e) {
-      if (element.naturalWidth <= element.offsetWidth && element.naturalHeight <= element.offsetHeight) {
-        // don't open lightbox is already shown at 100% or more
-        return
-      }
+      //if (element.naturalWidth <= element.offsetWidth && element.naturalHeight <= element.offsetHeight) {
+      //  // don't open lightbox is already shown at 100% or more
+      //  return
+      //}
       init()
       var img = document.createElement('img')
       img.src = e.currentTarget.src
