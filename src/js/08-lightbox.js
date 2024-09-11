@@ -61,19 +61,19 @@ when lightbox is opened for inlined SVG:
       closeLink.href = '#'
       closeLink.className = 'close'
       closeLink.setAttribute('title', 'Close lightbox')
-      if (config.svgAs === 'svg') {
-        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-        svg.setAttribute('class', 'copy-icon')
-        var use = document.createElementNS('http://www.w3.org/2000/svg', 'use')
-        use.setAttribute('href', window.uiRootPath + '/img/octicons-16.svg#icon-x')
-        svg.appendChild(use)
-        closeLink.appendChild(svg)
-      } else {
-        var img = document.createElement('img')
-        img.src = window.uiRootPath + '/img/octicons-16.svg#view-x'
-        img.alt = 'close icon'
-        img.className = 'x-icon'
-        closeLink.appendChild(img)
+      //if (config.svgAs === 'svg') {
+      //  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+      //  svg.setAttribute('class', 'copy-icon')
+      //  var use = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+      //  use.setAttribute('href', window.uiRootPath + '/img/octicons-16.svg#icon-x')
+      //  svg.appendChild(use)
+      //  closeLink.appendChild(svg)
+      //  } else {
+      //  var img = document.createElement('img')
+      //  img.src = window.uiRootPath + '/img/octicons-16.svg#view-x'
+      //  img.alt = 'close icon'
+      //  img.className = 'x-icon'
+      //  closeLink.appendChild(img)
       }
       lightbox.appendChild(closeLink)
       content = document.createElement('div')
