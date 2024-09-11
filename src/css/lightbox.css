@@ -5,7 +5,6 @@ By Alexander Schwartz
 https://gitlab.com/ahus1
 */
 
-/* The Modal (background) */
 .modal {
   display: none;
   position: fixed;
@@ -20,11 +19,16 @@ https://gitlab.com/ahus1
   background-color: rgba(30, 30, 30, 0.8);
 }
 
-img.lightbox {
+.imageblock .lightbox {
   cursor: pointer;
 }
+
+.imageblock .lightbox object {
+  pointer-events: none;
+}
+
 /* Modal Content */
-.modal .modal-content {
+.modal .content {
   position: relative;
   margin: auto;
   padding: 0;
@@ -33,31 +37,34 @@ img.lightbox {
   cursor: pointer;
 }
 
-.modal .modal-content img {
-  width: auto;
-  height: auto;
-  max-width: 90vw;
-  max-height: 90vh;
-  min-width: 90vw;
-  min-height: 90vh;
+.modal .content img {
   display: block;
   margin-right: auto;
   margin-left: auto;
-  object-fit: contain;
 }
-/* The Close Button */
+
+.modal .content object {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  /* will prevent clicking on links on objects, therefore avoid! */
+  /* pointer-events: none; */
+}
+
+.modal .content svg {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .modal .close {
-  color: white;
   position: absolute;
   top: 10px;
   right: 25px;
-  font-size: 35px;
-  font-weight: bold;
 }
 
-.modal .close:hover,
-.modal .close:focus {
-  color: #999;
-  text-decoration: none;
-  cursor: pointer;
+.modal .close img {
+  height: 24px;
+  width: 24px;
+  filter: invert(100%);
 }
