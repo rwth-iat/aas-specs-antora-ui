@@ -120,9 +120,9 @@ when lightbox is opened for inlined SVG:
     var ratioSource = source.offsetWidth / source.offsetHeight
     var ratioTarget = target.offsetWidth / target.offsetHeight
     if (ratioSource < ratioTarget) {
-      img.style.height = '90vh'
+      img.style.height = '50vh'
     } else {
-      img.style.width = '90vw'
+      img.style.width = '50vw'
     }
   }
 
