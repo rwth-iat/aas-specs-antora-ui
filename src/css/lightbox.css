@@ -6,7 +6,7 @@ https://gitlab.com/ahus1
 */
 
 .modal {
-  display: none;
+  display: grid;
   position: fixed;
   z-index: 10;
   padding-top: 5vh;
@@ -38,33 +38,19 @@ https://gitlab.com/ahus1
 }
 
 .modal .content img {
-  display: block;
+  display: flex;
   margin-right: auto;
   margin-left: auto;
 }
 
 .modal .content object {
-  display: block;
+  display: flex;
   margin-right: auto;
   margin-left: auto;
-  /* will prevent clicking on links on objects, therefore avoid! */
-  /* pointer-events: none; */
 }
 
 .modal .content svg {
   display: block;
   margin-right: auto;
   margin-left: auto;
-}
-
-.modal .close {
-  position: absolute;
-  top: 10px;
-  right: 25px;
-}
-
-.modal .close img {
-  height: 24px;
-  width: 24px;
-  filter: invert(100%);
 }

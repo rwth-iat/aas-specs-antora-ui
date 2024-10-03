@@ -5,46 +5,6 @@ By Alexander Schwartz
 https://gitlab.com/ahus1
 */
 
-/*
-Lghtbox functionality: a user clicks on an image, and it will open full screen until user closes it again.
-
-Supported functionality:
-
-when lightbox is closed for all images:
- * if the image has a link, the standard behavior for hovering and clicking is unchanged.
-
-when lightbox is closed for standard block image:
- * when hovering over image AND if original size of image is greater than displayed image,
-   THEN change mouse pointer to pointer
-   (works for both bitmap images the same way as for SVG images)
- * when clicking on image AND if original size of image is greater than displayed image, THEN open lightbox
-   (works for both bitmap images the same way as for SVG images)
-
-when lightbox is closed for inlined or interactive SVG image:
- * when hovering over image THEN change mouse pointer to pointer
- * when clicking on image THEN open lightbox
-
-when lightbox is open for all images:
- * when user clicks on close icon, lightbox will close
- * when user presses Escape, lightbox will close
- * when user presses Tab to select the close button and presses Space or Enter, lightbox will close
-
-when lightbox is opened for standard block image:
- * when user clicks enlarged image, lightbox will close
-
-when lightbox is opened for interactive SVG:
- * when user clicks enlarged image AND if the SVG doesn't contain any hyperlinks, lightbox will close
- * when user clicks enlarged image AND if the SVG contain a hyperlinks AND the user clicks outside of a hyperlink,
-   nothing happens (the lightbox will stay open)
- * when user clicks enlarged image AND if the SVG contains hyperlinks AND the user clicks on a hyperlink,
-   the hyperlinks will work as before
-
-when lightbox is opened for inlined SVG:
- * when user clicks on links included in the SVG, the hyperlinks will work as before
- * when user clicks outside of the links withing the SVG, the lightbox will close
-
- */
-
 ;(function () {
   'use strict'
   var lightbox
@@ -56,30 +16,24 @@ when lightbox is opened for inlined SVG:
       lightbox = document.createElement('div')
       lightbox.setAttribute('aria-modal', 'true')
       lightbox.className = 'modal'
-      var closeLink = document.createElement('a')
-      // set href to make it selectable with tab / assistive technologies
+      
+      var closeLink = document.createElement('button');
+      closeLink.innerText = 'Close';
+      closeLink.style.position = 'absolute';
+      closeLink.style.top = '10px';
+      closeLink.style.right = '10px';
+      closeLink.style.zIndex = '1000';
       closeLink.href = '#'
-      closeLink.className = 'close'
       closeLink.textContent = 'Close Image';
       closeLink.setAttribute('title', 'Close Image')
-      //if (config.svgAs === 'svg') {
-      //  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-      //  svg.setAttribute('class', 'copy-icon')
-      //  var use = document.createElementNS('http://www.w3.org/2000/svg', 'use')
-      //  use.setAttribute('href', window.uiRootPath + '/img/octicons-16.svg#icon-x')
-      //  svg.appendChild(use)
-      //  closeLink.appendChild(svg)
-      //  } else {
-      //  var img = document.createElement('img')
-      //  img.src = window.uiRootPath + '/img/octicons-16.svg#view-x'
-      //  img.alt = 'close icon'
-      //  img.className = 'x-icon'
-      //  closeLink.appendChild(img)
-      // }
+      
       lightbox.appendChild(closeLink)
+      
       content = document.createElement('div')
       content.className = 'content'
       lightbox.appendChild(content)
+
+
       var body = document.getElementsByTagName('body')[0]
       body.appendChild(lightbox)
       body.addEventListener('keydown', function (e) {
@@ -195,6 +149,7 @@ when lightbox is opened for inlined SVG:
       // need to select element's parent node, as offsetWidth/offsetHeight not available on SVG
       setImageSize(img, element.parentNode, content.parentNode)
       content.appendChild(img)
+     
       // prevent links in SVGs to open, as this should only open the lightbox
       e.preventDefault()
     })
