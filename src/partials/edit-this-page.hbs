@@ -4,11 +4,11 @@
 <div class="edit-this-page"><a href="{{page.fileUri}}">Edit this Page</a></div>
 {{else if (and page.editUrl (or env.FORCE_SHOW_EDIT_PAGE_LINK (not page.origin.private)))}}
   {{#if (edit2var page.editUrl "history") }}
-  <div class="edit-this-page"><a href="{{{edit2var page.editUrl "history"}}}">Page history</a></div>
+  <div class="edit-this-page"><a href="{{{edit2var page.editUrl "history"}}}"> <i class="fas fa-history"></i> Page history</a></div>
   {{/if}}
-  <div class="edit-this-page"><a href="{{page.editUrl}}">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="{{page.editUrl}}"> <i class="fas fa-edit"></i> Edit this Page</a></div>
   {{#if (edit2var page.editUrl "issue") }}
-  <div class="edit-this-page"><a href="{{{edit2var page.editUrl "issue"}}}">Report an issue</a></div>
+  <div class="edit-this-page"><a href="{{{edit2var page.editUrl "issue"}}}"> <i class="fas fa-bug"></i> Report an issue</a></div>
   {{/if}}
 {{/if}}
 
