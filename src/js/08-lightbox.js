@@ -18,14 +18,12 @@ https://gitlab.com/ahus1
       lightbox.className = 'modal'
       
       var closeLink = document.createElement('button');
-      closeLink.innerText = 'Close';
+      closeLink.innerHTML = '<i class="fa-solid fa-xmark"></i>';
       closeLink.style.position = 'absolute';
-      closeLink.style.top = '10px';
-      closeLink.style.right = '10px';
+      closeLink.style.top = '25px';
+      closeLink.style.right = '25px';
       closeLink.style.zIndex = '1000';
       closeLink.href = '#'
-      closeLink.textContent = 'Close Image';
-      closeLink.setAttribute('title', 'Close Image')
       
       lightbox.appendChild(closeLink)
       

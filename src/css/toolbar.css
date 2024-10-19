@@ -66,3 +66,18 @@
 .toolbar .edit-this-page a {
   color: var(--toolbar-muted-color);
 }
+
+.download-pdf-button {
+  display: none;
+  padding-right: 0.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .download-pdf-button {
+    display: block;
+  }
+}
+
+.toolbar .download-pdf-button a {
+  color: var(--toolbar-muted-color);
+}
