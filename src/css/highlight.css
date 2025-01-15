@@ -84,3 +84,33 @@
 .hljs-strong {
   font-weight: var(--monospace-font-weight-bold);
 }
+
+/* Custom linenums highlighter */
+pre.highlight tbody {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+
+span.hljs-linenum {
+  color: var(--color-gray-10);
+}
+
+td.source {
+  margin: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+td code.hljs {
+  white-space: pre;
+}
+
+table.tableblock:has( pre.highlight) {
+  table-layout: fixed;
+}
+
+td.source.nums {
+  position: sticky;
+  left: 0;
+}
